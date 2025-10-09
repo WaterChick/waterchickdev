@@ -16,7 +16,7 @@
           words="Hi, I am Kevin"
       />
       <p class="text-lg text-zinc-300 max-w-md leading-relaxed font-poppins">
-        I made custom Spigot plugins in Java, adding unique gameplay mechanics and server management features.
+        I make custom Spigot plugins in Java, adding unique gameplay mechanics and server management features.
       </p>
     </main>
 
