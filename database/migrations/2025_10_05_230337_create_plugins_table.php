@@ -23,6 +23,7 @@ return new class extends Migration
             $table->json('additional_images')->nullable();
             $table->json('tags')->nullable();
             $table->json('categories')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

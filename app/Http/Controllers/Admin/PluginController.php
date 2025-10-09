@@ -109,6 +109,7 @@ class PluginController extends Controller
                 'status' => $plugin->status,
                 'tags' => $plugin->tags ?? [],
                 'categories' => $plugin->categories ?? [],
+                'link' => $plugin->link,
             ],
             'categoriesOptions' => $categoriesOptions,
             'user' => [
@@ -134,6 +135,7 @@ class PluginController extends Controller
             'plugin_id' => 'required|integer',
             'categories' => 'nullable|array',
             'categories.*' => 'string',
+            'link' => 'nullable|string'
         ]);
 
         $plugin->update([
@@ -145,6 +147,7 @@ class PluginController extends Controller
             'tags' => $request->input('tags') ?? [],
             'plugin_id' => $request->input('plugin_id') ?? 0,
             'categories' => $request->input('categories') ?? [],
+            'link' => $request->input('link')
         ]);
 
         return to_route('admin.plugins.index');

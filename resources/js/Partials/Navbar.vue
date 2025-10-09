@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="fixed top-0 w-full z-50 transition-all duration-300 border-b"
+    class="fixed top-0 w-full z-50 transition-all duration-300 border-b select-none"
     :class="isScrolled ? 'bg-[#262626]/98' : 'bg-[#262626]/85 backdrop-blur-lg'"
   >
     <div class="max-w-7xl mx-auto px-6 py-4">

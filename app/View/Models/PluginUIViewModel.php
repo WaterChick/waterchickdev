@@ -20,6 +20,7 @@ class PluginUIViewModel extends ViewModel {
             'cover_image_url' => $this->plugin->getCoverImageURL(),
             'additional_images' => $this->plugin->getAdditionalImagesURLs(),
             'tags' => $this->plugin->tags ?? [],
+            'link' => $this->plugin->link,
             'categories' => collect($this->plugin->categories ?? [])
                 ->map(function ($cat) {
                     if (is_string($cat) && PluginCategory::tryFrom($cat)) {

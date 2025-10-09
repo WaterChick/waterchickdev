@@ -3,7 +3,7 @@
   <div>
     <Hero />
 
-    <section id="work" class="relative px-6 py-40 md:px-16 bg-[#262626]">
+    <section id="work" class="relative px-6 py-40 md:px-16 bg-[#262626] select-none">
       <FadeOverlay position="top" />
       <div class="max-w-6xl w-full mx-auto">
         <Heading title="Completed Projects" />
@@ -48,7 +48,7 @@
         />
       </div>
       <Dialog v-model:open="isPluginDialogOpen" :trap-focus="false">
-        <DialogContent>
+        <DialogContent class="select-none">
           <DialogHeader>
             <DialogTitle>{{ selectedPlugin?.title }}</DialogTitle>
             <DialogDescription>{{ selectedPlugin?.description }}</DialogDescription>
@@ -90,7 +90,14 @@
                 {{ tag }}
               </Badge>
             </div>
-  
+
+            <div v-if="selectedPlugin?.link">
+              <a :href="selectedPlugin?.link" target="_blank" class="cursor-pointer">
+                <Button variant="outline" class="w-full mt-2">
+                  More Informations
+                </Button>
+              </a>
+            </div>
           </article>
         </DialogContent>
       </Dialog>
@@ -183,6 +190,8 @@ import { EmptyState } from "@/Components/EmptyState";
 import { Heading } from "./Components/Heading";
 import Footer from "@/Partials/Footer.vue";
 import Navbar from "@/Partials/Navbar.vue";
+import { Button } from "@/Components/Button";
+import Link from "@/Components/DataTable/Columns/Link.vue";
 
 const plugin = Autoplay({
   delay: 2500,
@@ -198,6 +207,7 @@ interface Plugin {
   additionalImages: string[];
   tags: string[];
   categories: Array<any>;
+  link: string;
 }
 
 interface Review {

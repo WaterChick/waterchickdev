@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-[#262626] py-12">
+  <footer class="bg-[#262626] py-12 select-none">
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
 

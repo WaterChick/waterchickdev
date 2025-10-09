@@ -64,6 +64,9 @@
                   </TagsInput>
                 </FormControl>
 
+                <FormControl for="link" label="Link" :errors="form.errors.link">
+                  <Input v-model="form.link" />
+                </FormControl>
 
                 <Button
                   :disabled="!user.isAdmin"
@@ -239,6 +242,7 @@ interface Plugin {
   status: 'draft' | 'published'
   tags: string[];
   categories: string[];
+  link: string;
 }
 
 const props = defineProps<{ 
@@ -261,6 +265,7 @@ const form = useForm({
   tags: props.plugin.tags || [],
   plugin_id: props.plugin.plugin_id ?? 0,
   categories: props.plugin.categories || [],
+  link: props.plugin.link || ''
 });
 
 const previewImage = ref<string | null>(null);
