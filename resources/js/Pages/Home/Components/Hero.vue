@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen w-full overflow-clip flex flex-col items-center justify-center">
+  <div id="introduction" class="relative h-screen w-full overflow-clip flex flex-col items-center justify-center select-none">
     <StarsBackground
       :factor="0.05"
       :speed="50"

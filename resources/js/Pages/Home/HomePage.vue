@@ -1,11 +1,12 @@
 <template>
+  <Navbar />
   <div>
     <Hero />
 
-    <section class="relative px-6 py-40 md:px-16 bg-[#262626]">
+    <section id="work" class="relative px-6 py-40 md:px-16 bg-[#262626]">
       <FadeOverlay position="top" />
       <div class="max-w-6xl w-full mx-auto">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase text-white mb-12">My Work</h1>
+        <Heading title="Completed Projects" />
 
         <article class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-white">
           <div v-for="plugin in plugins" :key="plugin.id" @click="openPluginDialog(plugin)" class="rounded-lg overflow-hidden group shadow-lg hover:shadow-2xl transition cursor-pointer">
@@ -55,33 +56,30 @@
   
           <article>
             <Carousel
-  class="relative w-full"
-  :plugins="[plugin]"
-  :options="{ loop: false }" 
-  @mouseenter="plugin.stop"
-  @mouseleave="() => { plugin.reset(); plugin.play(); }"
-  tabindex="-1"
->
-  <CarouselContent>
-    <CarouselItem
-      v-for="(image, index) in allPluginImages"
-      :key="index"
-      class="w-full"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <img
-        :src="image"
-        class="w-full mb-4 rounded"
-        loading="lazy"
-      />
-    </CarouselItem>
-  </CarouselContent>
-</Carousel>
+              class="relative w-full"
+              :plugins="[plugin]"
+              :options="{ loop: false }" 
+              @mouseenter="plugin.stop"
+              @mouseleave="() => { plugin.reset(); plugin.play(); }"
+              tabindex="-1"
+            >
+              <CarouselContent>
+                <CarouselItem
+                  v-for="(image, index) in allPluginImages"
+                  :key="index"
+                  class="w-full"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <img
+                    :src="image"
+                    class="w-full mb-4 rounded"
+                    loading="lazy"
+                  />
+                </CarouselItem>
+              </CarouselContent>
+            </Carousel>
 
-
-
-  
             <div class="flex flex-wrap gap-2 mt-2">
               <Badge
                 v-for="(tag, index) in selectedPlugin?.tags"
@@ -98,9 +96,9 @@
       </Dialog>
     </section>
 
-    <section class="relative px-6 py-40 md:px-16 bg-[#262626]">
+    <section id="reviews" class="relative px-6 py-40 md:px-16 bg-[#262626]" v-if="props.reviews.length >= 1">
       <div class="max-w-6xl w-full mx-auto">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase text-white mb-12">What people say about me</h1>
+        <Heading title="What people say about me" />
 
         <article class="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden">
           <Marquee :repeat="40" pause-on-hover class="[--duration:10s]">
@@ -134,33 +132,35 @@
     </section>
   </div>
 
-    <Dialog v-model:open="isDialogOpen">
-      <DialogContent class="max-w-xl w-[90vw] max-h-[80vh] p-6 flex flex-col overflow-hidden lg:max-w-3xl lg:p-8">
-          <DialogHeader>
-            <DialogTitle class="text-lg sm:text-xl text-center font-bold mb-4">
-              {{ selectedReview?.name }}
-            </DialogTitle>
-          </DialogHeader>
+  <Dialog v-model:open="isDialogOpen">
+    <DialogContent class="max-w-xl w-[90vw] max-h-[80vh] p-6 flex flex-col overflow-hidden lg:max-w-3xl lg:p-8">
+        <DialogHeader>
+          <DialogTitle class="text-lg sm:text-xl text-center font-bold mb-4">
+            {{ selectedReview?.name }}
+          </DialogTitle>
+        </DialogHeader>
 
-          <DialogDescription
-            class="whitespace-pre-line leading-relaxed text-justify mb-4 text-xs sm:text-base
-                  overflow-y-auto flex-grow pr-2
-                  scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200
-                  dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-700
-                  max-h-[calc(80vh-6rem)]"
+        <DialogDescription
+          class="whitespace-pre-line leading-relaxed text-justify mb-4 text-xs sm:text-base
+                overflow-y-auto flex-grow pr-2
+                scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200
+                dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-700
+                max-h-[calc(80vh-6rem)]"
+        >
+          {{ selectedReview?.description }}
+        </DialogDescription>
+
+        <div class="mb-4 flex items-center justify-center gap-2 text-yellow-400 text-xl sm:text-2xl">
+          <span v-for="i in 5" :key="i" :class="i <= (selectedReview?.rating ?? 0) ? 'text-yellow-400' : 'text-gray-300'">★</span
           >
-            {{ selectedReview?.description }}
-          </DialogDescription>
+          <span class="ml-2 text-sm sm:text-base capitalize text-muted-foreground dark:text-gray-300">
+            ({{ selectedReview?.rating ?? '-' }})
+          </span>
+        </div>
+    </DialogContent>
+  </Dialog>
 
-          <div class="mb-4 flex items-center justify-center gap-2 text-yellow-400 text-xl sm:text-2xl">
-            <span v-for="i in 5" :key="i" :class="i <= (selectedReview?.rating ?? 0) ? 'text-yellow-400' : 'text-gray-300'">★</span
-            >
-            <span class="ml-2 text-sm sm:text-base capitalize text-muted-foreground dark:text-gray-300">
-              ({{ selectedReview?.rating ?? '-' }})
-            </span>
-          </div>
-      </DialogContent>
-    </Dialog>
+  <Footer />
 
 </template>
 
@@ -178,11 +178,11 @@ import { Carousel, CarouselContent, CarouselItem } from "@/Components/Carousel";
 import Autoplay from "embla-carousel-autoplay"
 import { Badge } from "@/Components/Badge";
 import { FadeOverlay } from "./Components/FadeOverlay";
-import { useInitials } from "@/Composables";
 import { Marquee, ReviewCard } from "@/Components/Marquee";
 import { EmptyState } from "@/Components/EmptyState";
-
-const { getInitials } = useInitials();
+import { Heading } from "./Components/Heading";
+import Footer from "@/Partials/Footer.vue";
+import Navbar from "@/Partials/Navbar.vue";
 
 const plugin = Autoplay({
   delay: 2500,
