@@ -14,7 +14,7 @@
               <Logo class="shrink-0" />
 
               <div class="grid flex-1 text-left text-sm leading-tight">
-                <span class="truncate font-semibold">{{ $page.props.app.name }}</span>
+                <span class="truncate font-semibold">Kevin Frey</span>
                 <span class="truncate text-xs">{{ $t('Admin Panel') }}</span>
               </div>
             </Link>

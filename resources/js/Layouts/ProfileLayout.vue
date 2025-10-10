@@ -14,7 +14,7 @@
               <Logo class="shrink-0" />
 
               <div class="grid flex-1 text-left text-sm leading-tight">
-                <span class="truncate font-semibold">{{ $page.props.app.name }}</span>
+                <span class="truncate font-semibold">Kevin Frey</span>
               </div>
             </Link>
           </SidebarMenuItem>
@@ -29,7 +29,7 @@
 
       <Link :href="route('home')" class="flex text-center mx-auto text-muted-foreground mb-2 items-center gap-2">
         <StepBack class="w-5 h-5" />
-        Návrat na stránku
+        {{ $t('Back to the platform') }}
       </Link>
 
       <SidebarFooter>
