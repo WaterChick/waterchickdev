@@ -28,7 +28,7 @@
     <!-- SEO -->
     <meta name="description" content="Kevin Frey je Java developer špecializujúci sa na vývoj Minecraft Spigot pluginov a serverových riešení. Tvorím moderné a optimalizované pluginy pre komunitu aj komerčné projekty.">
     <meta name="keywords" content="Kevin Frey, Java developer, Spigot developer, Minecraft pluginy, Bukkit, Paper, Minecraft vývoj, Minecraft server, backend developer, plugin developer, Minecraft Java vývojár">
-    <meta name="author" content="Kevin Frey">
+    <meta name="author" content="Adrián Ondik">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://waterchick.dev/">
 

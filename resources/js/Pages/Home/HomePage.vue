@@ -191,7 +191,6 @@ import { Heading } from "./Components/Heading";
 import Footer from "@/Partials/Footer.vue";
 import Navbar from "@/Partials/Navbar.vue";
 import { Button } from "@/Components/Button";
-import Link from "@/Components/DataTable/Columns/Link.vue";
 
 const plugin = Autoplay({
   delay: 3000,
