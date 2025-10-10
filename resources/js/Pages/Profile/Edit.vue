@@ -1,5 +1,5 @@
 <template>
-    <AuthenticatedLayout :title="$t('Profile')">
+    <ProfileLayout :title="$t('Profile')">
         <template #header>
             <h2 class="font-semibold text-xl-leading-tight">{{ $t('Profile') }}</h2>
         </template>
@@ -16,7 +16,7 @@
                 <DeleteUserForm />
             </div>
         </div>
-    </AuthenticatedLayout>
+    </ProfileLayout>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +25,7 @@ import { Head } from '@inertiajs/vue3';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import DeleteUserForm from './Partials/DeleteUserForm.vue';
+import ProfileLayout from '@/Layouts/ProfileLayout.vue';
 
 defineProps<{
   mustVerifyEmail?: boolean;

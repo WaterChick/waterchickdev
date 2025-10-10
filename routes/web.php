@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Status\PluginPublishController;
 use App\Http\Controllers\Status\PluginUnpublishController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -24,7 +25,7 @@ Route::middleware('auth')->group(function() {
 });
 
 Route::prefix('admin')
-    ->middleware('auth')
+    ->middleware(AdminMiddleware::class)
     ->group(function() {
         Route::get('/', AdminController::class)->name('dashboard');
 

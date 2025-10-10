@@ -1,10 +1,10 @@
 <template>
   <div id="introduction" class="relative h-screen w-full overflow-clip flex flex-col items-center justify-center select-none">
-    <StarsBackground
+    <!-- <StarsBackground
       :factor="0.05"
       :speed="50"
       star-color="#fff"
-    />
+    /> -->
 
     <main class="absolute text-center space-y-4">
       <img 

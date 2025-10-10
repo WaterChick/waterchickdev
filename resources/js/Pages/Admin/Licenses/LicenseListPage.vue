@@ -10,6 +10,7 @@
             >
                 <template #empty-table>
                     <Button 
+                        :disabled="!user.isAdmin" 
                         :icon="PlusIcon"
                         @click="createLicense"
                         :label="$t('Create License')"
@@ -20,6 +21,7 @@
 
                 <template #actions>
                     <Button
+                        :disabled="!user.isAdmin" 
                         :icon="PlusIcon"
                         @click="createLicense"
                         :label="$t('Create License')"
@@ -39,6 +41,9 @@ import { PlusIcon } from 'lucide-vue-next';
 
 defineProps<{
     licenses: DataTableValue;
+    user: {
+        isAdmin: boolean;
+    }
 }>();
 
 function createLicense() {

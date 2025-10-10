@@ -9,6 +9,7 @@ use App\Table\Actions\DeleteAction;
 use App\View\Layouts\AdminLayout;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
@@ -24,6 +25,9 @@ use StackTrace\Ui\Link;
 class LicenseController extends Controller
 {
     public function index() {
+        $user = Auth::user();
+        $isAdmin = $user->is_admin;
+
         $table = Table::make(License::query())
             ->searchable(fn (Builder $builder, string $term) => $builder->where('discord_user', 'like', '%'.Str::lower($term).'%'))
             ->withColumns([
@@ -52,7 +56,10 @@ class LicenseController extends Controller
             ]);
 
         return Inertia::render('Admin/Licenses/LicenseListPage', AdminLayout::make([
-            'licenses' => $table
+            'licenses' => $table,
+            'user' => [
+                'isAdmin' => $isAdmin
+            ]
         ])->breadcrumb(BreadcrumbItem::make(__('Sidebar:Licenses'), Link::to(route('admin.licenses.index')))));
     }
 
