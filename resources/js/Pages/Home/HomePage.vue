@@ -73,14 +73,14 @@
                 >
                   <img
                     :src="image"
-                    class="w-full mb-4 rounded"
+                    class="w-full h-[400px] object-contain mb-4 rounded"
                     loading="lazy"
                   />
                 </CarouselItem>
               </CarouselContent>
             </Carousel>
 
-            <div class="flex flex-wrap gap-2 mt-2">
+            <div class="flex flex-wrap gap-2">
               <Badge
                 v-for="(tag, index) in selectedPlugin?.tags"
                 :key="index"
@@ -91,7 +91,7 @@
               </Badge>
             </div>
 
-            <div v-if="selectedPlugin?.link">
+            <div v-if="selectedPlugin?.link" class="mt-5">
               <a :href="selectedPlugin?.link" target="_blank" class="cursor-pointer">
                 <Button variant="outline" class="w-full mt-2">
                   More Informations
@@ -194,7 +194,7 @@ import { Button } from "@/Components/Button";
 import Link from "@/Components/DataTable/Columns/Link.vue";
 
 const plugin = Autoplay({
-  delay: 2500,
+  delay: 3000,
   stopOnMouseEnter: true,
   stopOnInteraction: false,
 })
