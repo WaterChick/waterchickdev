@@ -40,9 +40,9 @@ class UserController extends Controller
                 ->alignCenter()
                 ->style(function (Table\Style $style, User $user) {
                     if ($user->is_admin) {
-                        $style->color('destructive');
-                    } else {
                         $style->color('positive');
+                    } else {
+                        $style->color('destructive');
                     }
                 })
                 ->width(10),

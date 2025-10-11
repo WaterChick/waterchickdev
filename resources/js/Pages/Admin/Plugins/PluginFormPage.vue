@@ -231,7 +231,7 @@ import MultiSelect from '@/Components/MultiSelect/MultiSelect.vue';
 interface Plugin {
   id: number;
   uuid: string;
-  plugin_id: number;
+  pluginId: number;
   title: string;
   description: string;
   coverImagePath: string;
@@ -253,7 +253,7 @@ const props = defineProps<{
   }
 }>();
 
-console.log(props.categoriesOptions);
+console.log(props.plugin);
 
 const form = useForm({
   title: props.plugin.title || '',
@@ -263,7 +263,7 @@ const form = useForm({
   additional_images: props.plugin.additionalImages || [],
   status: props.plugin.status || '',
   tags: props.plugin.tags || [],
-  plugin_id: props.plugin.plugin_id ?? 0,
+  plugin_id: props.plugin.pluginId ?? 0,
   categories: props.plugin.categories || [],
   link: props.plugin.link || ''
 });

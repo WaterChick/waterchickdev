@@ -117,14 +117,19 @@ class LicenseController extends Controller
 
         $ip = $request->header('X-REAL-IP') ?? $request->ip();
 
-        Log::info('Validating license from IP: ' . $ip);
-
         $exists = License::where('license_id', $data['licenseId'])
             ->where('plugin_id', $data['pluginId'])
             ->where(function ($query) use ($ip) {
                 $query->whereNull('ip')->orWhere('ip', $ip);
             })
             ->exists();
+
+        Log::info('License validation check', [
+            'ip' => $ip,
+            'license_id' => $data['licenseId'],
+            'plugin_id' => $data['pluginId'],
+            'status' => $exists ? 'VALID' : 'INVALID',
+        ]);
 
         return response()->json([
             'message' => $exists ? 'License valid' : 'License not found',
