@@ -115,7 +115,7 @@ class LicenseController extends Controller
             'pluginId' => ['required', 'integer'],
         ]);
 
-        $ip = $request->header('X-REAL-IP') ?? $request->ip();
+        $ip = $request->header('X-Real-IP') ?? $request->ip();
 
         $exists = License::where('license_id', $data['licenseId'])
             ->where('plugin_id', $data['pluginId'])
