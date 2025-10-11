@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('ip')->nullable()->unique();
             $table->string('domain')->nullable();
-            $table->uuid('license_id');
+            $table->uuid('license_id')->nullable();
             $table->string('discord_user')->nullable();
             $table->unsignedBigInteger('plugin_id')->nullable();
             $table->foreign('plugin_id')->references('plugin_id')->on('plugins')->onDelete('cascade')->onUpdate('cascade');

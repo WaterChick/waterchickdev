@@ -64,9 +64,7 @@ class LicenseController extends Controller
     }
 
     public function create(License $license) {
-        $license = License::create([
-            'license_id' => Str::uuid(),
-        ]);
+        $license = License::create([]);
 
         return to_route('admin.licenses.edit', $license);
     }
@@ -76,7 +74,7 @@ class LicenseController extends Controller
 
         // dd($plugins->toArray());
 
-        return Inertia::render('Admin/Licenses/LicenseFormPage', [
+        return Inertia::render('Admin/Licenses/LicenseFormPage', AdminLayout::make([
             'license' => [
                 'id' => $license->id,
                 'ip' => $license->ip,
@@ -86,7 +84,10 @@ class LicenseController extends Controller
                 'plugin_id' => $license->plugin_id,
             ],
             'plugins' => $plugins,
-        ]);
+        ])->breadcrumb([
+            BreadcrumbItem::make(__('Sidebar:Licenses'), Link::to(route('admin.licenses.index'))),
+            BreadcrumbItem::make($license->discord_user ?? 'Undefined User'),
+        ]));
     }
 
     public function update(Request $request, License $license)
@@ -94,8 +95,9 @@ class LicenseController extends Controller
         $request->validate([
             'ip' => ['nullable', 'string'],
             'domain' => ['nullable', 'string'],
-            'discord_user' => ['required', 'string', 'max:191'],
+            'discord_user' => ['nullable', 'string', 'max:191'],
             'plugin_id' => ['nullable', 'string'],
+            'license_id' => ['nullable', 'string']
         ]);
 
         $license->update([
@@ -103,9 +105,31 @@ class LicenseController extends Controller
             'ip' => $request->input('ip'),
             'domain' => $request->input('domain'),
             'plugin_id' => $request->input('plugin_id'),
+            'license_id' => $request->input('license_id'),
         ]);
 
         return to_route('admin.licenses.index');
+    }
+
+    public function generateLicenseId(License $license)
+    {
+        $license->license_id = (string) Str::uuid();
+        $license->save();
+
+        return Inertia::render('Admin/Licenses/LicenseFormPage', AdminLayout::make([
+            'license' => [
+                'id' => $license->id,
+                'ip' => $license->ip,
+                'domain' => $license->domain,
+                'license_id' => $license->license_id,
+                'discord_user' => $license->discord_user,
+                'plugin_id' => $license->plugin_id,
+            ],
+            'plugins' => Plugin::all(),
+        ])->breadcrumb([
+            BreadcrumbItem::make(__('Sidebar:Licenses'), Link::to(route('admin.licenses.index'))),
+            BreadcrumbItem::make($license->discord_user ?? 'Undefined User'),
+        ]));
     }
 
     public function validateLicense(Request $request) {

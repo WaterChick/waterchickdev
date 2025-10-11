@@ -50,6 +50,7 @@ Route::prefix('admin')
         Route::get('license/{license}/edit', [LicenseController::class, 'edit'])->name('admin.licenses.edit');
         Route::patch('license/{license}/update', [LicenseController::class, 'update'])->name('admin.licenses.update');
         Route::post('licenses', [LicenseController::class, 'create'])->name('admin.licenses.create');
+        Route::post('licenses/{license}/generate', [LicenseController::class, 'generateLicenseId'])->name('admin.licenses.generate');
     });
 
 Route::post('/upload-cover', [UploadCoverImageController::class, 'uploadCover']);
