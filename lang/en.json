@@ -22,6 +22,7 @@
     "New Password": "New Password",
     "Confirm Password": "Confirm Password",
     "Password": "Password",
+    "Welcome back! Log in to your account.": "Welcome back! Log in to your account.",
 
     "Delete Account?": "Delete Account?",
     "Are you sure you want to permanently delete your account? This action cannot be undone.": "Are you sure you want to permanently delete your account? This action cannot be undone.",
@@ -29,6 +30,10 @@
     "Are you sure you want to delete your account?": "Are you sure you want to delete your account?",
     "Once deleted, your account and all related data will be permanently removed. This action cannot be undone.": "Once deleted, your account and all related data will be permanently removed. This action cannot be undone.",
     "Cancel": "Cancel",
+    "Enter your details below to create your account": "Enter your details below to create your account",
+    "Logging in...": "Logging in...",
+    "Don't have an account?": "Don't have an account?",
+    "Sign Up": "Sign Up",
 
     "Log In": "Log In",
     "Login": "Login",

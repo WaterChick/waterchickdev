@@ -22,6 +22,7 @@
     "New Password": "Nové heslo",
     "Confirm Password": "Potvrdiť heslo",
     "Password": "Heslo",
+    "Welcome back! Log in to your account.": "Vitajte späť! Prihláste sa do svojho účtu.",  
 
     "Delete Account?": "Zmazať účet?",
     "Are you sure you want to permanently delete your account? This action cannot be undone.": "Naozaj chcete natrvalo zmazať svoj účet? Túto akciu nemožno vrátiť späť.",
@@ -29,6 +30,8 @@
     "Are you sure you want to delete your account?": "Naozaj chcete zmazať svoj účet?",
     "Once deleted, your account and all related data will be permanently removed. This action cannot be undone.": "Po zmazaní bude váš účet a všetky súvisiace údaje natrvalo odstránené. Túto akciu nemožno vrátiť späť.",
     "Cancel": "Zrušiť",
+    "Logging in...": "Prihlasovanie...",
+    "Enter your details below to create your account": "Zadajte svoje údaje nižšie a vytvorte si účet",
 
     "Log In": "Prihlásenie",
     "Login": "Prihlásiť sa",
@@ -39,7 +42,8 @@
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Zabudli ste heslo? Žiadny problém. Stačí nám poskytnúť svoju e-mailovú adresu a my vám e-mailom pošleme odkaz na obnovenie hesla, ktorý vám umožní vybrať si nové.",
     "Reset password": "Obnoviť heslo",
     "Create an account": "Vytvorte si účet",
-
+    "Don't have an account?": "Nemáte účet?",
+    "Sign Up": "Registrujte sa",
 
     "Name :name": "Používateľ :name",
     "You cannot remove admin permissions from yourself.": "Nemôžete odstrániť oprávnenia správcu zo seba.",
