@@ -109,24 +109,28 @@ class LicenseController extends Controller
     }
 
     public function validateLicense(Request $request) {
+        // validácia camelCase kľúčov
         $data = $request->validate([
-            'license_id' => ['required', 'string'],
-            'plugin_id' => ['required', 'integer'],
+            'licenseId' => ['required', 'string'],
+            'pluginId' => ['required', 'integer'],
         ]);
 
         $ip = $request->header('X-REAL-IP') ?? $request->ip();
 
-        Log::info($ip);
+        Log::info('Validating license from IP: ' . $ip);
 
-        $exists = License::where('license_id', $data['license_id'])
-            ->where('plugin_id', $data['plugin_id'])
-            ->where('ip', $ip)
+        $exists = License::where('license_id', $data['licenseId'])
+            ->where('plugin_id', $data['pluginId'])
+            ->where(function ($query) use ($ip) {
+                $query->whereNull('ip')->orWhere('ip', $ip);
+            })
             ->exists();
 
         return response()->json([
-            'message' => $exists ? 'License valid' : 'License not found'
+            'message' => $exists ? 'License valid' : 'License not found',
         ], $exists ? 200 : 404);
     }
+
 
 
 
