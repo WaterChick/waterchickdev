@@ -105,7 +105,7 @@ class LicenseController extends Controller
             'ip' => $request->input('ip'),
             'domain' => $request->input('domain'),
             'plugin_id' => $request->input('plugin_id'),
-            'license_id' => $request->input('license_id'),
+            'license_id' => $request->input('license_idtab'),
         ]);
 
         return to_route('admin.licenses.index');

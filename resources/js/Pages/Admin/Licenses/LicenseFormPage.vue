@@ -11,7 +11,7 @@
                     <Input type="text" v-model="form.ip" />
                 </FormControl>
 
-                <FormControl :label="$t('Domain')" :error="form.errors.domain" required>
+                <FormControl :label="$t('Domain')" :error="form.errors.domain">
                     <Input type="text" v-model="form.domain" />
                 </FormControl>
 
