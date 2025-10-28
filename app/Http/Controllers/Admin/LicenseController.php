@@ -139,7 +139,8 @@ class LicenseController extends Controller
             'pluginId' => ['required', 'integer'],
         ]);
 
-        $ip = $request->ip();
+        // 🌟 použijeme hlavičku z Nginx, fallback na $request->ip()
+        $ip = $request->header('X-Real-Client-IP', $request->ip());
 
         $exists = License::where('license_id', $data['licenseId'])
             ->where('plugin_id', $data['pluginId'])
@@ -159,6 +160,7 @@ class LicenseController extends Controller
             'message' => $exists ? 'License valid' : 'License not found',
         ], $exists ? 200 : 404);
     }
+
 
 
 
