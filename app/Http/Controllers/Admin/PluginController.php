@@ -92,8 +92,6 @@ class PluginController extends Controller
             ];
         });
 
-        // dd($categoriesOptions->toArray());
-
         return Inertia::render('Admin/Plugins/PluginFormPage', AdminLayout::make([
             'plugin' => [
                 'id' => $plugin->id,

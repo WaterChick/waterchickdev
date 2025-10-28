@@ -253,8 +253,6 @@ const props = defineProps<{
   }
 }>();
 
-console.log(props.plugin);
-
 const form = useForm({
   title: props.plugin.title || '',
   description: props.plugin.description || '',

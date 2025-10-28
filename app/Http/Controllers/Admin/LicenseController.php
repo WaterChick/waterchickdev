@@ -72,8 +72,6 @@ class LicenseController extends Controller
     public function edit(License $license) {
         $plugins = Plugin::all();
 
-        // dd($plugins->toArray());
-
         return Inertia::render('Admin/Licenses/LicenseFormPage', AdminLayout::make([
             'license' => [
                 'id' => $license->id,
@@ -105,7 +103,7 @@ class LicenseController extends Controller
             'ip' => $request->input('ip'),
             'domain' => $request->input('domain'),
             'plugin_id' => $request->input('plugin_id'),
-            'license_id' => $request->input('license_idtab'),
+            'license_id' => $request->input('license_id'),
         ]);
 
         return to_route('admin.licenses.index');
@@ -139,7 +137,6 @@ class LicenseController extends Controller
             'pluginId' => ['required', 'integer'],
         ]);
 
-        // 🌟 použijeme hlavičku z Nginx, fallback na $request->ip()
         $ip = $request->header('X-Real-Client-IP', $request->ip());
 
         $exists = License::where('license_id', $data['licenseId'])
