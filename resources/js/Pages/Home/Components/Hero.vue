@@ -16,7 +16,7 @@
           words="Hi, I am Kevin"
       />
       <p class="text-lg text-zinc-300 max-w-md leading-relaxed font-poppins">
-        I make custom Spigot plugins in Java, adding unique gameplay mechanics and server management features.
+        I develop web applications using Vue.js and modern frameworks, alongside creating custom Minecraft plugins with Spigot API for unique server features.
       </p>
     </main>
 
