@@ -13,7 +13,7 @@
             <img
               :src="plugin.coverImageUrl"
               :alt="plugin.title"
-              class="w-full group-hover:scale-105 transition-transform duration-500"
+              class="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div class="p-4">
               <h2 class="font-extrabold text-xl">
