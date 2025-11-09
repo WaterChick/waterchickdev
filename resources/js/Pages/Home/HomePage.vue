@@ -269,6 +269,10 @@ const categoryColors: Record<string, string> = {
   Kotlin: 'bg-purple-500/10 text-purple-200 border-purple-500 hover:bg-purple-500/20 focus:ring-purple-400/40',
   SpringBoot: 'bg-green-500/10 text-green-200 border-green-500 hover:bg-green-500/20 focus:ring-green-400/40',
   MySQL: 'bg-sky-500/10 text-sky-200 border-sky-500 hover:bg-sky-500/20 focus:ring-sky-400/40',
+  VueJS: 'bg-green-500/10 text-green-200 border-green-500 hover:bg-green-500/20 focus:ring-green-400/40',
+  NextJS: 'bg-black-500/10 text-black-200 border-black-500 hover:bg-black-500/20 focus:ring-black-400/40',
+  SupaBase: 'bg-green-400/10 text-green-100 border-green-400 hover:bg-green-400/20 focus:ring-green-300/40',
+  TypeScript: 'bg-blue-500/10 text-blue-200 border-blue-500 hover:bg-blue-500/20 focus:ring-blue-400/40',
 };
 
 

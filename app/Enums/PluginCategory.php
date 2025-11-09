@@ -9,8 +9,11 @@ enum PluginCategory: string
     case SpringBoot = 'springboot';
     case MySQL = 'mysql';
     case SpigotAPI = 'spigotapi';
-
-
+    case VueJS = 'vuejs';
+    case NextJS = 'nextjs';
+    case SupaBase = 'supabase';
+    case TypeScript = 'typescript';
+    
     public function defaultValue() {
         return match($this) {
             PluginCategory::Java => 'Java',
@@ -18,6 +21,10 @@ enum PluginCategory: string
             PluginCategory::SpringBoot => 'SpringBoot',
             PluginCategory::MySQL => 'MySQL',
             PluginCategory::SpigotAPI => 'Spigot API',
+            PluginCategory::VueJS => 'VueJS',
+            PluginCategory::NextJS => 'NextJS',
+            PluginCategory::SupaBase => 'SupaBase',
+            PluginCategory::TypeScript => 'TypeScript',
         };
     }
 }

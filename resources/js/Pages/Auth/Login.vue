@@ -9,7 +9,7 @@
         <div class="relative z-10">
           <div class="text-center mb-8">
             <h1 class="text-4xl font-bold text-white mb-2">{{ $t('Log In') }}</h1>
-            <p class="text-[#60A5FA]/80">{{ $t('Welcome back! Log in to your account.') }}</p>
+            <p class="text-[#32de1b]/80">{{ $t('Welcome back! Log in to your account.') }}</p>
           </div>
 
           <form @submit.prevent="submit" class="space-y-6">
@@ -17,7 +17,7 @@
               <Label for="email" class="text-white/90 font-medium mb-2 block">{{ $t('Email') }}</Label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <svg class="w-5 h-5" style="color: #60A5FA" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5" style="color: #32de1b" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                   </svg>
@@ -31,10 +31,10 @@
                   autocomplete="username"
                   placeholder="email@example.com"
                   class="w-full pl-12 pr-4 py-3 bg-white/10 border-white/20 rounded-xl text-white placeholder:text-[#60A5FA]/50 focus:bg-white/15 transition-all"
-                  style="focus:border-color: #60A5FA"
+                  style="focus:border-color: #32de1b"
                 />
               </div>
-              <p v-if="form.errors.email" class="mt-2 text-sm" style="color: #60A5FA">{{ $t(form.errors.email) }}</p>
+              <p v-if="form.errors.email" class="mt-2 text-sm" style="color: #32de1b">{{ $t(form.errors.email) }}</p>
             </FormControl>
 
             <FormControl>
