@@ -130,32 +130,81 @@ class LicenseController extends Controller
         ]));
     }
 
-    public function validateLicense(Request $request) {
-        // validácia camelCase kľúčov
-        $data = $request->validate([
-            'licenseId' => ['required', 'string'],
-            'pluginId' => ['required', 'integer'],
-        ]);
+    public function validateLicense(Request $request)
+{
+    $data = $request->validate([
+        'licenseId' => ['required', 'string'],
+        'pluginId'  => ['required', 'integer'],
+    ]);
 
-        $ip = $request->header('X-Real-Client-IP', $request->ip());
+    $ip = $request->header('X-Real-Client-IP', $request->ip());
 
-        $exists = License::where('license_id', $data['licenseId'])
-            ->where('plugin_id', $data['pluginId'])
-            ->where(function ($query) use ($ip) {
-                $query->whereNull('ip')->orWhere('ip', $ip);
-            })
-            ->exists();
+    $license = License::where('license_id', $data['licenseId'])
+        ->where('plugin_id', $data['pluginId'])
+        ->where(function ($query) use ($ip) {
+            $query->whereNull('ip')->orWhere('ip', $ip);
+        })
+        ->first();
 
-        Log::info('License validation check', [
-            'ip' => $ip,
-            'license_id' => $data['licenseId'],
-            'plugin_id' => $data['pluginId'],
-            'status' => $exists ? 'VALID' : 'INVALID',
-        ]);
+    $exists = $license !== null;
 
+    Log::info('License validation check', [
+        'ip'         => $ip,
+        'license_id' => $data['licenseId'],
+        'plugin_id'  => $data['pluginId'],
+        'status'     => $exists ? 'VALID' : 'INVALID',
+    ]);
+
+    if (!$exists) {
         return response()->json([
-            'message' => $exists ? 'License valid' : 'License not found',
-        ], $exists ? 200 : 404);
+            'message' => 'License not found',
+        ], 404);
+    }
+
+    // === Generování offline tokenu ===
+    $graceDays = 3; // můžeš později dát do configu
+    $now = time();
+    $validUntil = $now + ($graceDays * 24 * 60 * 60);
+
+    $payload = json_encode([
+        'pluginId'   => (string) $data['pluginId'],
+        'licenseId'  => $data['licenseId'],
+        'iat'        => $now,
+        'validUntil' => $validUntil,
+    ], JSON_UNESCAPED_SLASHES);
+
+    // Načtení privátního klíče
+    $privateKey = openssl_pkey_get_private(
+        file_get_contents(storage_path('keys/license_private.pem'))
+    );
+
+    if ($privateKey === false) {
+        Log::error('Failed to load private key for license signing');
+        return response()->json(['message' => 'Server error'], 500);
+    }
+
+    $signature = '';
+    $success = openssl_sign($payload, $signature, $privateKey, OPENSSL_ALGO_SHA256);
+
+    if (!$success) {
+        Log::error('Failed to sign license token');
+        return response()->json(['message' => 'Server error'], 500);
+    }
+
+    // Token formát: base64url(payload).base64url(signature)
+    $token = $this->base64UrlEncode($payload) . '.' . $this->base64UrlEncode($signature);
+
+    // Vrátíme přímo token jako plain text (status 200)
+    return response($token, 200)
+        ->header('Content-Type', 'text/plain');
+}
+
+    /**
+     * Base64 URL-safe encode (bez paddingu)
+     */
+    private function base64UrlEncode(string $data): string
+    {
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
     }
 
 
