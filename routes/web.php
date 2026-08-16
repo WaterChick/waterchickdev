@@ -57,5 +57,15 @@ Route::post('/upload-cover', [UploadCoverImageController::class, 'uploadCover'])
 Route::post('/upload-additional-images', [UploadCoverImageController::class, 'upload']);
 Route::post('/upload-reviews-avatars', [UploadCoverImageController::class, 'uploadUserAvatar']);
 
+Route::get('/ip-debug', function () {
+    return response()->json([
+        'real_ip'             => request()->ip(),
+        'cf_connecting_ip'    => request()->header('CF-Connecting-IP'),
+        'x_forwarded_for'     => request()->header('X-Forwarded-For'),
+        'x_real_ip'           => request()->header('X-Real-IP'),
+        'all_headers'         => request()->headers->all(),
+    ], 200, [], JSON_PRETTY_PRINT);
+});
+
 
 require __DIR__.'/auth.php';
