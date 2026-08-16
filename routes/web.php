@@ -56,6 +56,8 @@ Route::prefix('admin')
 Route::post('/upload-cover', [UploadCoverImageController::class, 'uploadCover']);
 Route::post('/upload-additional-images', [UploadCoverImageController::class, 'upload']);
 Route::post('/upload-reviews-avatars', [UploadCoverImageController::class, 'uploadUserAvatar']);
+Route::post('/licenses/validate', [LicenseController::class, 'validateLicense'])
+    ->name('licenses.validate');
 
 Route::get('/ip-debug', function () {
     return response()->json([
